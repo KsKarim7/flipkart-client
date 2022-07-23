@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
 import Header from './pages/header/Header';
+import Home from './pages/home/Home';
+import { Box } from '@mui/material'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
+      <Box style={{ marginTop: '54px' }}>
+        <Home></Home>
+      </Box>
     </div>
   );
 }
