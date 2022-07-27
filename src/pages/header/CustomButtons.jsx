@@ -35,7 +35,7 @@ height:32px;
 
 const CustomButtons = () => {
     const [open, setOpen] = useState(false);
-    const { account } = useContext(DataContext);
+    const { account, setAccount } = useContext(DataContext);
 
     const openDialog = () => {
         setOpen(true)
@@ -44,7 +44,7 @@ const CustomButtons = () => {
     return (
         <Wrapper style={{ display: 'flex' }}>
             {
-                account ? <Profile account={account}></Profile>
+                account ? <Profile account={account} setAccount={setAccount}></Profile>
                     :
                     <LoginButton variant='contained' onClick={() => openDialog()}>Login</LoginButton>
             }
