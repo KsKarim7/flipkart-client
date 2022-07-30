@@ -4,6 +4,9 @@ import { Box, styled } from '@mui/material'
 import Banner from './Banner';
 import { getProducts } from '../../redux/actions/productActions';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
+import Slide from './Slide';
+import MidSlide from './MidSlide';
+import MidSection from './MidSection';
 
 const Component = styled(Box)`
 padding: 10px 10px;
@@ -11,8 +14,8 @@ background:#F2F2F2;
 `
 
 const Home = () => {
-
-    useSelector(state => state.getProducts)
+    const { products } = useSelector(state => state.getProducts);
+    console.log(products);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -23,6 +26,14 @@ const Home = () => {
             <NavBar></NavBar>
             <Component>
                 <Banner></Banner>
+                <MidSlide products={products} title='Deal of the Day' timer={true}></MidSlide>
+                <MidSection></MidSection>
+                <Slide products={products} title='Discounts  for you' timer={false}></Slide>
+                <Slide products={products} title='Recommended Items' timer={false}></Slide>
+                <Slide products={products} title='Trending Offers' timer={false}></Slide>
+                <Slide products={products} title='Top Selection' timer={false}></Slide>
+                <Slide products={products} title="Season' s Top picks" timer={false}></Slide>
+                <Slide products={products} title="Top Deals on Accessories" timer={false}></Slide>
 
             </Component>
         </>
