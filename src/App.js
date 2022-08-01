@@ -2,6 +2,8 @@ import Header from './pages/header/Header';
 import Home from './pages/home/Home';
 import { Box } from '@mui/material'
 import DataProvider from './context/DataProvider';
+import { Routes, Route } from 'react-router-dom';
+import DetailView from './pages/details/DetailView';
 
 
 function App() {
@@ -9,7 +11,10 @@ function App() {
     <DataProvider>
       <Header></Header>
       <Box style={{ marginTop: '54px' }}>
-        <Home></Home>
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/product/:id' element={<DetailView></DetailView>}></Route>
+        </Routes>
       </Box>
     </DataProvider>
   );
