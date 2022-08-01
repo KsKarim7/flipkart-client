@@ -13,11 +13,11 @@ margin-top:55px
 
 const Container = styled(Grid)`
 background:#FFFFFF;
-display:flex
+display:flex;
 `;
 
 const RightContainer = styled(Grid)`
-margin-top:
+margin-top:50px;
 `
 
 const LeftContainer = styled(Grid)`
@@ -51,15 +51,15 @@ const DetailView = () => {
                     </LeftContainer>
                     <RightContainer item lg={8} md={8} sm={8} xs={12}>
                         <Typography>{product.title.longTitle}</Typography>
-                        <Typography style={{ marginTop: 5, color: '#878787', fontsize: 14 }}>8 Ratings And ! Review
+                        <Typography style={{ marginTop: 5, color: '#878787', fontsize: 14 }}>8 Ratings And 1 Review
                             <Box component="span">
                                 <img src={fassured} alt="" style={{ width: 77, marginLeft: 20 }} />
                             </Box>
                         </Typography>
                         <Typography>
-                            <Box component='span' style={{ fontsize: 28 }}>৳{product.price.cost}</Box>&npsp;&npsp;&npsp;
+                            <Box component='span' style={{ fontSize: 28 }}>৳{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
 
-                            <Box component='span' style={{ color: '#878787' }}>৳{product.price.mrp}</Box>&npsp;&npsp;&npsp;
+                            <Box component='span' style={{ color: '#878787' }}><strike> ৳{product.price.mrp}</strike></Box>&nbsp;&nbsp;&nbsp;
                             <Box component='span' style={{ color: '#388E3C' }}>৳{product.price.discount}</Box>
                         </Typography>
                     </RightContainer>
