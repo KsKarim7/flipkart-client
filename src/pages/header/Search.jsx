@@ -1,7 +1,10 @@
-import React from 'react';
-import { InputBase, Toolbar, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { InputBase, List, ListItem, Toolbar, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search'
+import { useSelector, useDispatch } from 'react-redux';
+import { getProducts } from '../../redux/actions/productActions.js'
+import { Link } from 'react-router-dom';
 
 const SearchContainer = styled(Box)`
 background:#fff;
@@ -19,17 +22,54 @@ color:blue;
 padding:5px;
 display:flex;
 `
+const ListWrapper = styled(List)`
+position:absolute;
+background:#FFFFFF;
+color:#000;
+margin-top:36px;
 
+`
 
 const Search = () => {
+    const [text, setText] = useState('');
+    const dispatch = useDispatch()
+    const { products } = useSelector(state => state.getProducts);
+
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
+
+    const getText = (text) => {
+        setText(text);
+    }
+
     return (
         <SearchContainer style={{ display: 'flex' }}>
-            <InputSearchBase placeholder='Search for products, brands and more'>
+            <InputSearchBase placeholder='Search for products, brands and more'
+                onChange={(e) => getText(e.target.value)}
+                value={text}
+            >
             </InputSearchBase>
             <SearchIconWrapper>
                 <SearchIcon></SearchIcon>
             </SearchIconWrapper>
-        </SearchContainer>
+            {
+                text &&
+                <ListWrapper>
+                    {
+                        products.filter(product => product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product => (
+                            <ListItem>
+                                <Link to={`/product/${product.id}`}
+                                    onClick={() => setText('')}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {product.title.longTitle}
+                                </Link>
+                            </ListItem>
+                        ))
+                    }
+                </ListWrapper >
+            }
+        </SearchContainer >
     );
 };
 
