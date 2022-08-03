@@ -6,9 +6,14 @@ import CartItems from './CartItems';
 import EmptyCart from './EmptyCart';
 import TotalView from './TotalView';
 
-const Container = styled(Grid)`
-padding:30px 135px;
-`
+const Container = styled(Grid)(({ theme }) => ({
+    padding: '30px 135px',
+    [theme.breakpoints.down('md')]: {
+        padding: '15px 0'
+    }
+
+}))
+
 const Header = styled(Box)`
 padding :25px 24px;
 background:#fff
@@ -30,9 +35,14 @@ height:51px;
 border-radius:2px; 
 `;
 
-const LeftComponent = styled(Grid)`
-padding-right:15px
-`
+const LeftComponent = styled(Grid)(({ theme }) => ({
+    paddingRight: 15,
+    [theme.breakpoints.down('md')]: {
+        marginBottom: 15
+    }
+
+}))
+
 
 const Cart = () => {
     const { cartItems } = useSelector(state => state.cart);
